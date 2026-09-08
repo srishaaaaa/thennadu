@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Lock, Eye, EyeOff, AlertCircle, ShieldCheck } from 'lucide-react'
 import { useAdminAuthStore } from '../store/store'
-import { BRAND_EN, BRAND_LOGO, BRAND_TA, BRAND_SUBTITLE } from '../lib/brand'
+import { BRAND_EN, BRAND_TA, BRAND_SUBTITLE } from '../lib/brand'
 import { useLangStore } from '../store/langStore'
 
 export default function AdminLogin() {
@@ -43,7 +43,7 @@ export default function AdminLogin() {
       <div className="relative grid w-full max-w-5xl overflow-hidden rounded-[32px] border border-[#FDDBB4] bg-white shadow-[0_24px_80px_rgba(17,17,17,0.12)] lg:grid-cols-[0.9fr_1.1fr]">
         <div className="hidden flex-col justify-between bg-[#111111] p-10 text-white lg:flex">
           <div>
-            <div className="mb-8 inline-flex items-center justify-center rounded-2xl bg-white border border-[#FDDBB4] p-2 shadow-xl"><img src={BRAND_LOGO} alt={`${BRAND_EN} logo`} className="h-12 w-auto max-w-[150px] rounded-xl object-contain" /></div>
+            <div className="mb-8 inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl shadow-xl"><img src="/logo-icon.png" alt={`${BRAND_EN} logo`} className="h-full w-full object-cover" /></div>
             <p className="text-[11px] font-black uppercase tracking-[0.28em] text-[#F6C7A0]">{BRAND_SUBTITLE}</p>
             <h2 className="mt-4 max-w-xs text-4xl font-black leading-tight tracking-tight">Everything you need to run billing clearly.</h2>
             <p className="mt-5 max-w-sm text-sm leading-7 text-white/70">Manage products, bills, orders, invoices, and WhatsApp customer communication from one secure portal.</p>
@@ -53,7 +53,7 @@ export default function AdminLogin() {
         <div className="p-6 sm:p-10 lg:p-12">
         {/* Brand */}
         <div className="mb-8 flex flex-col items-center text-center lg:items-start lg:text-left">
-          <div className="mb-5 inline-flex items-center justify-center rounded-2xl bg-white border border-[#FDDBB4] p-2 shadow-xl lg:hidden"><img src={BRAND_LOGO} alt={`${BRAND_EN} logo`} className="h-12 w-auto max-w-[150px] rounded-xl object-contain" /></div>
+          <div className="mb-5 inline-flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl shadow-xl lg:hidden"><img src="/logo-icon.png" alt={`${BRAND_EN} logo`} className="h-full w-full object-cover" /></div>
           <p className="text-[11px] font-black uppercase tracking-[0.24em] text-[#E87020]">{BRAND_SUBTITLE}</p>
           <h1 className="mt-2 text-3xl font-black tracking-tight text-[#111111]">{BRAND_EN}</h1>
           <p className="mt-1 text-sm font-semibold text-[#7A786F]">{BRAND_TA}</p>

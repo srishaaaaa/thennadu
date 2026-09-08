@@ -20,26 +20,13 @@ interface ProductStockRow {
   is_active: boolean
 }
 
-const ACK_KEY = 'thenn_nadu_low_stock_ack_ids'
-
-const getAckIds = (): Set<string> => {
-  try {
-    const raw = sessionStorage.getItem(ACK_KEY)
-    return raw ? new Set(JSON.parse(raw)) : new Set()
-  } catch {
-    return new Set()
-  }
-}
-
-const saveAckIds = (ids: Set<string>) => {
-  try { sessionStorage.setItem(ACK_KEY, JSON.stringify([...ids])) } catch { /* ignore */ }
-}
-
 /**
  * Fires its low-stock check on mount (i.e. right after login) and again only
- * when `triggerKey` becomes "inventory" — not on every tab switch. Acknowledged
- * product IDs persist in sessionStorage so already-seen items don't re-trigger
- * until a new item crosses into low/out-of-stock.
+ * when `triggerKey` becomes "inventory" — not on every tab switch. Each of
+ * those triggers always shows the current low/out-of-stock list, even if the
+ * same items were acknowledged on a previous trigger — acknowledging only
+ * silences the alarm for the item currently on screen, it does not suppress
+ * future logins/Inventory visits.
  */
 export default function LowStockAlarmModal({ triggerKey }: { triggerKey?: string | number }) {
   const { soundEnabled } = useSound()
@@ -60,10 +47,8 @@ export default function LowStockAlarmModal({ triggerKey }: { triggerKey?: string
         .select('id, name, category, stock_quantity, low_stock_alert, is_active')
         .eq('is_active', true)
       if (cancelled || !data) return
-      const ackIds = getAckIds()
       const low = (data as ProductStockRow[])
         .filter(p => p.stock_quantity <= (p.low_stock_alert || 5))
-        .filter(p => !ackIds.has(String(p.id)))
         .map(p => ({
           id: p.id, name: p.name, category: p.category,
           stock_quantity: p.stock_quantity, low_stock_alert: p.low_stock_alert || 5,
@@ -121,10 +106,6 @@ export default function LowStockAlarmModal({ triggerKey }: { triggerKey?: string
   }, [])
 
   const acknowledge = () => {
-    if (!items) return
-    const ackIds = getAckIds()
-    items.forEach(i => ackIds.add(String(i.id)))
-    saveAckIds(ackIds)
     if (intervalRef.current) window.clearInterval(intervalRef.current)
     setItems(null)
   }
@@ -188,7 +169,7 @@ export default function LowStockAlarmModal({ triggerKey }: { triggerKey?: string
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 pt-1">
-            <p className="text-[11px] text-[#9CA3AF] font-bold sm:max-w-[140px] shrink-0 order-2 sm:order-1">Silences sound until next new low-stock item.</p>
+            <p className="text-[11px] text-[#9CA3AF] font-bold sm:max-w-[140px] shrink-0 order-2 sm:order-1">Will sound again on next login or Inventory visit.</p>
             <button onClick={acknowledge}
               className="flex-1 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-black text-sm py-3 rounded-xl order-1 sm:order-2">
               <VolumeX size={16} /> Silence Alarm &amp; Acknowledge

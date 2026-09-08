@@ -168,7 +168,8 @@ export async function createAdvanceOrder(input: {
         createdOrder = normalizeOrder(rpcRow(data))
         // Patch reference_number (not in RPC params)
         if (input.referenceNumber.trim()) {
-          await supabase.from('advance_orders').update({ reference_number: input.referenceNumber.trim() }).eq('id', createdOrder.id)
+          const { error: refError } = await supabase.from('advance_orders').update({ reference_number: input.referenceNumber.trim() }).eq('id', createdOrder.id)
+          if (refError) console.error('[createAdvanceOrder] reference_number save failed:', refError.message)
           createdOrder.reference_number = input.referenceNumber.trim()
         }
       }

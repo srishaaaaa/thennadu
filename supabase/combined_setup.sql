@@ -950,6 +950,13 @@ create table if not exists public.advance_orders (
 
 alter table public.advance_orders add column if not exists products jsonb not null default '[]'::jsonb;
 
+-- The "Reference Number" field on the advance-order create form
+-- (advanceOrderService.ts's createAdvanceOrder) patches this in with a
+-- separate UPDATE right after the RPC creates the row, since it isn't one of
+-- the RPC's own parameters. That UPDATE was never error-checked, so this
+-- column silently never existed and every reference number was lost.
+alter table public.advance_orders add column if not exists reference_number text not null default '';
+
 create table if not exists public.advance_order_timeline (
   id bigint generated always as identity primary key,
   advance_order_id uuid not null references public.advance_orders(id) on delete cascade,
