@@ -14,7 +14,7 @@ export default function Favorites() {
         {items.length === 0 ? (
           <div className="surface-panel p-10 text-center">
             <p className="text-textMuted">{t('favorites.empty')}</p>
-            <Link to="/products" className="inline-block mt-3 text-sageDark font-semibold hover:underline">
+            <Link to="/products" className="inline-block mt-3 text-maroon font-semibold hover:underline">
               {t('products.title')}
             </Link>
           </div>

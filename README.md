@@ -1,15 +1,15 @@
-# Purple Boutique Billing
+# Thenn Nadu Tailoring Billing
 
-Independent React, Vite, and Supabase billing administration for Purple Boutique.
+Independent React, Vite, and Supabase billing administration for Thenn Nadu Tailoring.
 
 ## Local setup
 
-1. Copy `.env.example` to `.env` and add the dedicated Purple Boutique Supabase URL, public key, and portal passwords.
+1. Copy `.env.example` to `.env` and add the dedicated Thenn Nadu Tailoring Supabase URL, public key, and portal passwords.
 2. Apply the SQL files in `supabase/migrations` in filename order.
 3. Run `npm install`.
 4. Run `npm run dev`.
 
-The app keeps the established dashboard, POS billing, catalog, category, coupon, invoice, receipt, WhatsApp, and print flows. Local browser sessions use Purple Boutique-specific storage keys and do not share state with other shop projects.
+The app keeps the established dashboard, POS billing, catalog, category, coupon, invoice, receipt, WhatsApp, and print flows. Local browser sessions use Thenn Nadu Tailoring-specific storage keys and do not share state with other shop projects.
 
 ## Environment
 
@@ -21,4 +21,4 @@ The app keeps the established dashboard, POS billing, catalog, category, coupon,
 - `VITE_STAFF_ID` (optional; defaults to `VITE_ADMIN_ID`)
 - `VITE_STAFF_PASSWORD`
 
-The current SVG in `public/purple-boutique-logo.svg` is a temporary placeholder. Replace it with the final logo at the same path when supplied.
+The logo lives at `public/logo.png`. Replace it at the same path when supplied.

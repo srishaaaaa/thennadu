@@ -13,7 +13,7 @@ export const galleryImages: GalleryImage[] = [
   {
     id: 1,
     title: 'Our Store',
-    description: 'Purple Boutique in Cyberjaya, Selangor',
+    description: 'Thenn Nadu Tailoring in Georgetown, Penang',
     image: BASE + 'WhatsApp Image 2026-06-06 at 7.55.33 AM.jpeg',
     tags: ['store', 'front', 'heritage'],
   },

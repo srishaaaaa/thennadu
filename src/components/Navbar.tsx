@@ -32,25 +32,25 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 bg-forestDark/95 px-3 py-2 text-center text-[11px] sm:text-xs font-medium tracking-wide text-sage shadow-soft">
+      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 bg-maroon-dark/95 px-3 py-2 text-center text-[11px] sm:text-xs font-medium tracking-wide text-maroon shadow-soft">
         <span className="leading-snug">
           🌿 {t('nav.free_shipping')} &nbsp;·&nbsp; <span className="whitespace-nowrap">WhatsApp: {BRAND_WHATSAPP}</span>
         </span>
         <button onClick={() => setLang(lang === 'en' ? 'ta' : 'en')} className="hidden sm:inline-flex items-center rounded-full bg-white/8 p-0.5 text-[10px] font-bold text-white transition-colors shadow-soft">
-          <span className={`px-2 py-0.5 rounded-full transition-colors ${lang === 'en' ? 'bg-white text-forestDark' : 'text-white/70'}`}>EN</span>
-          <span className={`px-2 py-0.5 rounded-full transition-colors ${lang === 'ta' ? 'bg-white text-forestDark' : 'text-white/70'}`}>தமிழ்</span>
+          <span className={`px-2 py-0.5 rounded-full transition-colors ${lang === 'en' ? 'bg-white text-maroon-dark' : 'text-white/70'}`}>EN</span>
+          <span className={`px-2 py-0.5 rounded-full transition-colors ${lang === 'ta' ? 'bg-white text-maroon-dark' : 'text-white/70'}`}>தமிழ்</span>
         </button>
       </div>
 
-      <header className="sticky top-0 z-40 glass border-b border-sand/40 shadow-sm">
+      <header className="sticky top-0 z-40 glass border-b border-borderLight/40 shadow-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-3 px-3 py-2.5 sm:px-4 sm:py-3 lg:gap-4">
           <Link to="/" className="group flex min-w-0 items-center gap-2 sm:gap-2.5">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 bg-white rounded-full flex items-center justify-center overflow-hidden shadow-sm shrink-0 border border-sand/40 group-hover:opacity-90 transition-opacity">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 bg-white rounded-full flex items-center justify-center overflow-hidden shadow-sm shrink-0 border border-borderLight/40 group-hover:opacity-90 transition-opacity">
               <span className="text-[10px] font-black tracking-[0.24em] text-[#111111]">AT</span>
             </div>
             <div className="flex min-w-0 flex-col leading-none">
               <p className="truncate text-[12px] sm:text-[13px] font-bold leading-tight tracking-tight text-textMain md:text-[15px] font-headline">{BRAND_EN}</p>
-              <p className="hidden text-[9px] font-bold uppercase tracking-[0.15em] text-sageDark md:block">{BRAND_SUBTITLE}</p>
+              <p className="hidden text-[9px] font-bold uppercase tracking-[0.15em] text-maroon md:block">{BRAND_SUBTITLE}</p>
             </div>
           </Link>
 
@@ -60,7 +60,7 @@ export default function Navbar() {
               <input value={query} onChange={e => setQuery(e.target.value)} type="text"
                 placeholder={t('nav.search_placeholder')}
                 className="w-full h-10 sm:h-11 pl-11 pr-4 rounded-full bg-transparent outline-none text-sm text-textMain placeholder-gray-400" />
-              <button type="submit" className="h-10 sm:h-11 px-5 bg-gradient-to-r from-sageDark to-sageDeep text-white text-sm font-bold rounded-full transition-all mr-0.5 my-0.5 shadow-md hover:scale-[1.02]">
+              <button type="submit" className="h-10 sm:h-11 px-5 bg-gradient-to-r from-maroon to-maroon-dark text-white text-sm font-bold rounded-full transition-all mr-0.5 my-0.5 shadow-md hover:scale-[1.02]">
                 {t('nav.search')}
               </button>
             </div>
@@ -91,20 +91,20 @@ export default function Navbar() {
             <button
               onClick={() => setLang(lang === 'en' ? 'ta' : 'en')}
               title="Switch language / மொழி மாற்று"
-              className="flex items-center rounded-full bg-[#F9FAFB] border border-sand/60 px-1 py-0.5 text-[10px] font-black text-[#111111] shrink-0 mr-0.5"
+              className="flex items-center rounded-full bg-[#F9FAFB] border border-borderLight/60 px-1 py-0.5 text-[10px] font-black text-[#111111] shrink-0 mr-0.5"
             >
               <span className={`px-1.5 py-0.5 rounded-full transition-colors ${lang === 'en' ? 'bg-[#111111] text-white' : 'text-[#374151]'}`}>EN</span>
               <span className={`px-1.5 py-0.5 rounded-full transition-colors ${lang === 'ta' ? 'bg-[#111111] text-white' : 'text-[#374151]'}`}>த</span>
             </button>
-            <motion.button whileTap={{ scale: 0.88 }} onClick={() => setShowFav(true)} className="relative rounded-full hover:bg-sage/20 transition-colors touch-target">
+            <motion.button whileTap={{ scale: 0.88 }} onClick={() => setShowFav(true)} className="relative rounded-full hover:bg-maroon/20 transition-colors touch-target">
               <Heart size={18} className="text-textMuted sm:size-[20px]" />
               {favCount > 0 && <span className="absolute -top-0.5 -right-0.5 bg-rose-500 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{favCount}</span>}
             </motion.button>
-            <motion.button whileTap={{ scale: 0.88 }} onClick={() => setShowCart(true)} className="relative rounded-full hover:bg-sage/20 transition-colors touch-target">
+            <motion.button whileTap={{ scale: 0.88 }} onClick={() => setShowCart(true)} className="relative rounded-full hover:bg-maroon/20 transition-colors touch-target">
               <ShoppingCart size={18} className="text-textMuted sm:size-[20px]" />
-              {count > 0 && <span className="absolute -top-0.5 -right-0.5 bg-sageDark text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{count}</span>}
+              {count > 0 && <span className="absolute -top-0.5 -right-0.5 bg-maroon text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">{count}</span>}
             </motion.button>
-            <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden rounded-full hover:bg-sage/20 transition-colors ml-1 touch-target">
+            <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden rounded-full hover:bg-maroon/20 transition-colors ml-1 touch-target">
               {mobileOpen ? <X size={18} className="text-textMain sm:size-[20px]" /> : <Menu size={18} className="text-textMuted sm:size-[20px]" />}
             </button>
           </div>
@@ -113,11 +113,11 @@ export default function Navbar() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
-              className="lg:hidden overflow-hidden border-t border-sand/50 bg-white px-4 py-4 flex flex-col gap-3">
+              className="lg:hidden overflow-hidden border-t border-borderLight/50 bg-white px-4 py-4 flex flex-col gap-3">
               <form onSubmit={handleSearch} className="flex">
                 <input value={query} onChange={e => setQuery(e.target.value)} type="text" placeholder={t('nav.search_placeholder')}
-                  className="flex-grow h-10 px-3 rounded-l-lg border-2 border-sand focus:border-sage outline-none text-sm" />
-                <button type="submit" className="h-10 px-4 bg-sageDark text-white text-sm font-bold rounded-r-lg">{t('nav.search')}</button>
+                  className="flex-grow h-10 px-3 rounded-l-lg border-2 border-borderLight focus:border-maroon outline-none text-sm" />
+                <button type="submit" className="h-10 px-4 bg-maroon text-white text-sm font-bold rounded-r-lg">{t('nav.search')}</button>
               </form>
               <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
                 {[
@@ -141,7 +141,7 @@ export default function Navbar() {
                     setMobileOpen(false)
                     await handleLogout()
                   }}
-                  className="w-full py-2.5 px-3 bg-white border border-sand rounded-lg text-sm font-semibold text-red-500"
+                  className="w-full py-2.5 px-3 bg-white border border-borderLight rounded-lg text-sm font-semibold text-red-500"
                 >
                   {t('nav.logout')}
                 </button>

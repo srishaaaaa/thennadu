@@ -234,7 +234,7 @@ export default function Checkout() {
             </div>
             <h1 className="text-2xl font-bold font-headline text-textMain mb-2">Request Sent!</h1>
             <p className="text-textMuted text-sm mb-1">Your WhatsApp request has been saved.</p>
-            <p className="font-bold text-sageDark text-base mb-1">WhatsApp Request: {booked.requestId}</p>
+            <p className="font-bold text-maroon text-base mb-1">WhatsApp Request: {booked.requestId}</p>
             <p className="text-textMuted text-xs mb-4">{booked.itemCount} item(s)</p>
 
             {/* Summary */}
@@ -248,7 +248,7 @@ export default function Checkout() {
                   <span>−{formatCurrency(booked.discountAmount)}</span>
                 </div>
               )}
-              <div className="flex justify-between font-bold text-textMain text-base border-t border-sand pt-2 mt-2">
+              <div className="flex justify-between font-bold text-textMain text-base border-t border-borderLight pt-2 mt-2">
                 <span>Total</span><span>{formatCurrency(booked.total)}</span>
               </div>
             </div>
@@ -274,12 +274,12 @@ export default function Checkout() {
               </a>
               {user && (
                 <Link to="/profile"
-                  className="flex items-center justify-center gap-2 w-full bg-sageDark hover:bg-sageDeep text-white font-bold py-3.5 rounded-xl transition-colors">
+                  className="flex items-center justify-center gap-2 w-full bg-maroon hover:bg-maroon-dark text-white font-bold py-3.5 rounded-xl transition-colors">
                   <ShoppingBag size={18} /> View My Interactions
                 </Link>
               )}
               <Link to="/products"
-                className="flex items-center justify-center gap-2 w-full border-2 border-sand hover:border-sageDark text-textMain font-bold py-3.5 rounded-xl transition-colors">
+                className="flex items-center justify-center gap-2 w-full border-2 border-borderLight hover:border-maroon text-textMain font-bold py-3.5 rounded-xl transition-colors">
                 Continue Browsing
               </Link>
             </div>
@@ -293,7 +293,7 @@ export default function Checkout() {
   return (
     <div className="mobile-page-shell min-h-screen py-4 sm:py-10 pb-28 sm:pb-10">
       <div className="max-w-4xl mx-auto px-4">
-        <button onClick={() => navigate('/cart')} className="touch-target flex items-center gap-2 mb-4 sm:mb-6 text-sageDark font-bold">
+        <button onClick={() => navigate('/cart')} className="touch-target flex items-center gap-2 mb-4 sm:mb-6 text-maroon font-bold">
           <ArrowLeft size={16} /> Back to Cart
         </button>
 
@@ -312,7 +312,7 @@ export default function Checkout() {
                 <label className="block text-sm font-bold text-textMain mb-1.5">Full Name *</label>
                 <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                   placeholder="e.g. Priya Krishnamurthy"
-                  className="w-full px-4 py-2.5 sm:py-3 border-2 border-sand focus:border-sageDark rounded-xl outline-none transition-colors" required />
+                  className="w-full px-4 py-2.5 sm:py-3 border-2 border-borderLight focus:border-maroon rounded-xl outline-none transition-colors" required />
               </div>
 
               {/* Phone — prominent mandatory field */}
@@ -321,7 +321,7 @@ export default function Checkout() {
                   WhatsApp Number *
                 </label>
                 <div className="flex gap-2">
-                  <span className="flex items-center px-3 py-3 bg-[#F9FAFB] border-2 border-sand rounded-xl text-[13px] font-bold text-textMuted shrink-0">
+                  <span className="flex items-center px-3 py-3 bg-[#F9FAFB] border-2 border-borderLight rounded-xl text-[13px] font-bold text-textMuted shrink-0">
                     🇮🇳 +60
                   </span>
                   <input
@@ -333,7 +333,7 @@ export default function Checkout() {
                         ? 'border-red-400 focus:border-red-500'
                         : form.phone && isValidPhone(form.phone)
                           ? 'border-green-400 focus:border-green-500'
-                          : 'border-sand focus:border-sageDark'
+                          : 'border-borderLight focus:border-maroon'
                     }`}
                     required
                   />
@@ -353,7 +353,7 @@ export default function Checkout() {
                 <textarea value={form.address} onChange={e => setForm({ ...form, address: e.target.value })}
                   rows={3} placeholder="House no., street, city, pincode"
                   required
-                  className="w-full px-4 py-2.5 sm:py-3 border-2 border-sand focus:border-sageDark rounded-xl outline-none transition-colors resize-none" />
+                  className="w-full px-4 py-2.5 sm:py-3 border-2 border-borderLight focus:border-maroon rounded-xl outline-none transition-colors resize-none" />
               </div>
 
               {/* Coupon code */}
@@ -378,13 +378,13 @@ export default function Checkout() {
                       value={couponInput}
                       onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError('') }}
                       placeholder="e.g. FEST10"
-                      className="flex-1 px-4 py-2.5 border-2 border-sand focus:border-sageDark rounded-xl outline-none transition-colors text-sm font-bold tracking-wider"
+                      className="flex-1 px-4 py-2.5 border-2 border-borderLight focus:border-maroon rounded-xl outline-none transition-colors text-sm font-bold tracking-wider"
                       onKeyDown={e => e.key === 'Enter' && void applyCoupon()}
                     />
                     <button
                       onClick={() => void applyCoupon()}
                       disabled={couponLoading || !couponInput.trim()}
-                      className="px-4 py-2.5 bg-sageDark hover:bg-sageDeep text-white font-bold rounded-xl text-sm transition-colors disabled:opacity-50 shrink-0"
+                      className="px-4 py-2.5 bg-maroon hover:bg-maroon-dark text-white font-bold rounded-xl text-sm transition-colors disabled:opacity-50 shrink-0"
                     >
                       {couponLoading ? '…' : 'Apply'}
                     </button>
@@ -422,12 +422,12 @@ export default function Checkout() {
           {/* ── Your Items ── */}
           <div className="surface-panel p-4 sm:p-6">
             <h2 className="text-xl font-bold text-textMain mb-5">Your Items</h2>
-            <div className="space-y-4 divide-y divide-sand/30">
+            <div className="space-y-4 divide-y divide-borderLight/30">
               {items.map(item => {
                 const pName = lang === 'ta' && item.nameTa ? item.nameTa : item.name
                 return (
                   <div key={item.id} className="flex items-center gap-3 pt-4 first:pt-0">
-                    <div className="w-14 h-14 rounded-xl overflow-hidden bg-sand/20 shrink-0">
+                    <div className="w-14 h-14 rounded-xl overflow-hidden bg-borderLight/20 shrink-0">
                       <img src={item.image} alt={item.name} loading="lazy"
                         onError={e => { (e.target as HTMLImageElement).src = PRODUCT_PLACEHOLDER }}
                         className="w-full h-full object-cover" />
@@ -443,7 +443,7 @@ export default function Checkout() {
             </div>
 
             {/* Totals breakdown */}
-            <div className="mt-6 pt-5 border-t border-sand space-y-2 text-sm">
+            <div className="mt-6 pt-5 border-t border-borderLight space-y-2 text-sm">
               <div className="flex justify-between text-textMuted">
                 <span>Subtotal</span><span className="font-medium">{formatCurrency(subtotal)}</span>
               </div>
@@ -453,7 +453,7 @@ export default function Checkout() {
                   <span className="font-bold">−{formatCurrency(appliedCoupon.discount)}</span>
                 </div>
               )}
-              <div className="flex justify-between font-bold text-textMain text-base border-t border-sand pt-3 mt-2">
+              <div className="flex justify-between font-bold text-textMain text-base border-t border-borderLight pt-3 mt-2">
                 <span>Total</span><span>{formatCurrency(finalTotal)}</span>
               </div>
               <p className="text-xs text-textMuted bg-bgMain px-3 py-2 rounded-lg">

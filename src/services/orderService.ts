@@ -87,7 +87,7 @@ export const createOrderWithStock = async (input: CreateOrderInput): Promise<Cre
   data = newRpcResult.data
   error = newRpcResult.error
 
-  // Legacy Purple Boutique databases expose the original 15-argument RPC.
+  // Legacy databases expose the original 15-argument RPC.
   // Retry through its no-stock variant until migration 0003 is installed.
   if (newRpcResult.error?.code === 'PGRST202') {
     const legacyResult = await supabase.rpc('create_order_without_stock', {

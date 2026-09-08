@@ -100,7 +100,7 @@ export default function DigitalInvoice() {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#f9faf6] flex items-center justify-center">
-        <span className="w-8 h-8 border-4 border-sand border-t-sageDark rounded-full animate-spin" />
+        <span className="w-8 h-8 border-4 border-borderLight border-t-maroon rounded-full animate-spin" />
       </div>
     )
   }
@@ -108,11 +108,11 @@ export default function DigitalInvoice() {
   if (error || !invoice) {
     return (
       <div className="min-h-screen bg-[#f9faf6] flex flex-col items-center justify-center text-center p-6">
-        <h1 className="text-2xl font-bold text-sageDark mb-2">Invoice Not Found</h1>
+        <h1 className="text-2xl font-bold text-maroon mb-2">Invoice Not Found</h1>
         <p className="text-gray-500 mb-6">The requested invoice could not be found.</p>
         <button
           onClick={handleBack}
-          className="inline-flex items-center gap-2 px-6 py-2 bg-sage text-white rounded-full font-bold hover:bg-sageDark transition cursor-pointer"
+          className="inline-flex items-center gap-2 px-6 py-2 bg-maroon text-white rounded-full font-bold hover:bg-maroon-dark transition cursor-pointer"
         >
           <ArrowLeft size={16} /> Back
         </button>
@@ -231,7 +231,7 @@ export default function DigitalInvoice() {
     <div className="h-full overflow-y-auto bg-[#f9faf6] font-sans pb-12 print:bg-white print:pb-0">
       {/* Top action bar */}
       <div className="bg-[#f9faf6] p-4 sticky top-0 z-50 print:hidden flex items-center justify-between max-w-4xl mx-auto">
-        <button onClick={handleBack} className="flex items-center gap-2 text-sageDark hover:text-[#2d5a27] font-semibold text-sm transition-colors bg-white border border-sand/40 px-4 py-2 rounded-full shadow-sm cursor-pointer">
+        <button onClick={handleBack} className="flex items-center gap-2 text-maroon hover:text-maroon-dark font-semibold text-sm transition-colors bg-white border border-borderLight/40 px-4 py-2 rounded-full shadow-sm cursor-pointer">
           <ArrowLeft size={16} /> Back
         </button>
         <div className="flex items-center gap-2">
@@ -251,7 +251,7 @@ export default function DigitalInvoice() {
       </div>
 
       <div className="max-w-3xl mx-auto mt-4 print:mt-0 px-2 sm:px-0">
-        <div ref={invoiceElementRef} className="bg-white shadow-xl rounded-2xl overflow-hidden print:shadow-none print:rounded-none border border-sand/20 print:border-none">
+        <div ref={invoiceElementRef} className="bg-white shadow-xl rounded-2xl overflow-hidden print:shadow-none print:rounded-none border border-borderLight/20 print:border-none">
           <Invoice
             invoiceNo={invoice.invoice_no}
             date={invoice.created_at}

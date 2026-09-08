@@ -232,9 +232,9 @@ export default function Profile() {
           <div className="md:col-span-1">
             <div className="surface-panel p-6">
               {/* Avatar */}
-              <div className="flex flex-col items-center text-center mb-6 pb-6 border-b border-sand">
+              <div className="flex flex-col items-center text-center mb-6 pb-6 border-b border-borderLight">
                 <div className="relative mb-3">
-                  <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-to-br from-sage to-sageDark flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full overflow-hidden bg-gradient-to-br from-maroon to-maroon-dark flex items-center justify-center">
                     {avatarUrl ? (
                       <img src={avatarUrl} alt={user.name} className="w-full h-full object-cover" />
                     ) : (
@@ -245,7 +245,7 @@ export default function Profile() {
                     <button
                       onClick={() => avatarInputRef.current?.click()}
                       disabled={avatarUploading}
-                      className="absolute bottom-0 right-0 w-7 h-7 bg-sageDark hover:bg-sageDeep text-white rounded-full flex items-center justify-center shadow-md transition-colors disabled:opacity-60"
+                      className="absolute bottom-0 right-0 w-7 h-7 bg-maroon hover:bg-maroon-dark text-white rounded-full flex items-center justify-center shadow-md transition-colors disabled:opacity-60"
                       title="Change profile photo"
                     >
                       {avatarUploading
@@ -265,7 +265,7 @@ export default function Profile() {
                 <h2 className="text-lg font-bold text-textMain">{user.name}</h2>
                 <p className="text-sm text-textMuted">{user.email}</p>
                 {user.mobile && <p className="text-sm text-textMuted">{user.mobile}</p>}
-                <span className={`mt-2 px-3 py-0.5 rounded-full text-xs font-bold ${user.role === 'admin' ? 'bg-sageDark/20 text-sageDark' : 'bg-blue-100 text-blue-700'}`}>
+                <span className={`mt-2 px-3 py-0.5 rounded-full text-xs font-bold ${user.role === 'admin' ? 'bg-maroon/20 text-maroon' : 'bg-blue-100 text-blue-700'}`}>
                   {user.role === 'admin' ? '⚡ Admin' : '🛒 Customer'}
                 </span>
               </div>
@@ -273,11 +273,11 @@ export default function Profile() {
               {/* Nav */}
               <div className="space-y-2">
                 <button onClick={() => setActiveTab('orders')}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors ${activeTab === 'orders' ? 'bg-sageDark/10 text-sageDark' : 'text-textMuted hover:bg-bgMain'}`}>
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors ${activeTab === 'orders' ? 'bg-maroon/10 text-maroon' : 'text-textMuted hover:bg-bgMain'}`}>
                   <Package size={16} /> Order History
                 </button>
                 <button onClick={() => setActiveTab('info')}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors ${activeTab === 'info' ? 'bg-sageDark/10 text-sageDark' : 'text-textMuted hover:bg-bgMain'}`}>
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-colors ${activeTab === 'info' ? 'bg-maroon/10 text-maroon' : 'text-textMuted hover:bg-bgMain'}`}>
                   <User size={16} /> Account Info
                 </button>
                 {user.role === 'admin' && (
@@ -307,11 +307,11 @@ export default function Profile() {
               <div className="surface-panel p-6">
                 <div className="flex items-center justify-between mb-6">
                   <h2 className="text-xl font-bold text-textMain flex items-center gap-2">
-                    <User size={20} className="text-sageDark" /> Account Information
+                    <User size={20} className="text-maroon" /> Account Information
                   </h2>
                   {isSupabaseConfigured && !editing && (
                     <button onClick={startEdit}
-                      className="flex items-center gap-1.5 text-[12px] font-bold text-sageDark hover:text-sageDeep transition-colors">
+                      className="flex items-center gap-1.5 text-[12px] font-bold text-maroon hover:text-maroon-dark transition-colors">
                       <Edit2 size={13} /> Edit
                     </button>
                   )}
@@ -352,7 +352,7 @@ export default function Profile() {
                       <input
                         type="text"
                         autoFocus
-                        className="w-full px-4 py-3 rounded-xl border-2 border-sand focus:border-sageDark outline-none text-[13px]"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-borderLight focus:border-maroon outline-none text-[13px]"
                         value={editName}
                         onChange={e => { setEditName(e.target.value); setSaveErr('') }}
                         placeholder="Your full name"
@@ -365,13 +365,13 @@ export default function Profile() {
                         <span className="ml-1 font-normal normal-case text-[10px] text-gray-400">Malaysian mobile (+60)</span>
                       </label>
                       <div className="flex gap-2">
-                        <span className="flex items-center px-3 py-3 bg-[#F9FAFB] border-2 border-sand rounded-xl text-[13px] font-bold text-textMuted shrink-0 select-none">
+                        <span className="flex items-center px-3 py-3 bg-[#F9FAFB] border-2 border-borderLight rounded-xl text-[13px] font-bold text-textMuted shrink-0 select-none">
                           🇮🇳 +60
                         </span>
                         <input
                           type="tel"
                           maxLength={10}
-                          className="flex-1 px-4 py-3 rounded-xl border-2 border-sand focus:border-sageDark outline-none text-[13px]"
+                          className="flex-1 px-4 py-3 rounded-xl border-2 border-borderLight focus:border-maroon outline-none text-[13px]"
                           value={editPhone}
                           onChange={e => { setEditPhone(e.target.value.replace(/\D/g, '')); setSaveErr('') }}
                           placeholder="0123456789"
@@ -390,14 +390,14 @@ export default function Profile() {
 
                     <div className="flex gap-3 pt-1">
                       <button onClick={handleSaveProfile} disabled={saving}
-                        className="flex items-center gap-1.5 px-5 py-2.5 bg-sageDark hover:bg-sageDeep text-white font-bold rounded-xl text-[13px] disabled:opacity-60 transition-colors">
+                        className="flex items-center gap-1.5 px-5 py-2.5 bg-maroon hover:bg-maroon-dark text-white font-bold rounded-xl text-[13px] disabled:opacity-60 transition-colors">
                         {saving
                           ? <><span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Saving…</>
                           : <><Check size={14} /> Save Changes</>
                         }
                       </button>
                       <button onClick={cancelEdit} disabled={saving}
-                        className="flex items-center gap-1.5 px-5 py-2.5 border-2 border-sand text-textMuted font-bold rounded-xl text-[13px] hover:bg-bgMain transition-colors">
+                        className="flex items-center gap-1.5 px-5 py-2.5 border-2 border-borderLight text-textMuted font-bold rounded-xl text-[13px] hover:bg-bgMain transition-colors">
                         <X size={14} /> Cancel
                       </button>
                     </div>
@@ -410,13 +410,13 @@ export default function Profile() {
             {activeTab === 'orders' && (
               <div className="surface-panel p-6">
                 <h2 className="text-xl font-bold text-textMain mb-6 flex items-center gap-2">
-                  <Package size={20} className="text-sageDark" /> Order History
+                  <Package size={20} className="text-maroon" /> Order History
                   <span className="ml-auto text-sm font-normal text-textMuted">{orders.length} orders</span>
                 </h2>
 
                 {loading ? (
                   <div className="flex items-center justify-center py-16">
-                    <span className="w-8 h-8 border-4 border-sand border-t-sageDark rounded-full animate-spin" />
+                    <span className="w-8 h-8 border-4 border-borderLight border-t-maroon rounded-full animate-spin" />
                   </div>
                 ) : orders.length === 0 ? (
                   <div className="text-center py-16">
@@ -424,7 +424,7 @@ export default function Profile() {
                     <p className="font-bold text-textMain mb-2">No orders yet</p>
                     <p className="text-sm text-textMuted mb-6">Start shopping to see your orders here</p>
                     <Link to="/products"
-                      className="inline-block bg-sageDark hover:bg-sageDeep text-white font-bold px-6 py-3 rounded-xl transition-colors">
+                      className="inline-block bg-maroon hover:bg-maroon-dark text-white font-bold px-6 py-3 rounded-xl transition-colors">
                       Browse Products
                     </Link>
                   </div>
@@ -438,7 +438,7 @@ export default function Profile() {
                       const statusInfo = STATUS_COLORS[statusKey] || STATUS_COLORS.pending
                       const isExpanded = expanded === o.id
                       return (
-                        <div key={o.id} className="border border-sand rounded-xl overflow-hidden">
+                        <div key={o.id} className="border border-borderLight rounded-xl overflow-hidden">
                           <div
                             onClick={() => setExpanded(isExpanded ? null : o.id)}
                             className="flex flex-wrap gap-4 items-center justify-between p-4 cursor-pointer hover:bg-bgMain transition-colors"
@@ -461,8 +461,8 @@ export default function Profile() {
                           </div>
 
                           {isExpanded && (
-                            <div className="border-t border-sand bg-white p-4">
-                              <div className="mb-4 pb-4 border-b border-sand/50 text-sm grid grid-cols-2 gap-3">
+                            <div className="border-t border-borderLight bg-white p-4">
+                              <div className="mb-4 pb-4 border-b border-borderLight/50 text-sm grid grid-cols-2 gap-3">
                                 <div>
                                   <p className="text-xs text-textMuted font-bold uppercase mb-1">Customer</p>
                                   <p className="font-medium text-textMain">{o.customer_name}</p>
@@ -476,14 +476,14 @@ export default function Profile() {
 
                               <div className="overflow-x-auto">
                                 <table className="w-full min-w-[520px] text-sm">
-                                  <thead className="text-left text-textMuted border-b border-sand">
+                                  <thead className="text-left text-textMuted border-b border-borderLight">
                                   <tr>
                                     <th className="pb-2 font-medium">Item</th>
                                     <th className="pb-2 font-medium text-center">Qty</th>
                                     <th className="pb-2 font-medium text-right">Price</th>
                                   </tr>
                                 </thead>
-                                  <tbody className="divide-y divide-sand/30">
+                                  <tbody className="divide-y divide-borderLight/30">
                                   {(o.items || []).map((item, i: number) => {
                                       const pName = lang === 'ta' && item.tamil_name ? item.tamil_name : item.name
                                     return (
@@ -506,7 +506,7 @@ export default function Profile() {
                                 ))}
                               </div>
 
-                              <div className="mt-4 pt-4 border-t border-sand text-sm space-y-1 text-right">
+                              <div className="mt-4 pt-4 border-t border-borderLight text-sm space-y-1 text-right">
                                   <p className="text-textMuted">Subtotal: {formatCurrency(o.subtotal)}</p>
                                   <p className="font-bold text-textMain text-base">Total: {formatCurrency(o.total)}</p>
                               </div>

@@ -31,7 +31,7 @@ function FilterSideBlock({
     <div className="space-y-10">
       <div>
         <div className="flex items-center gap-2 mb-4">
-           <div className="w-1 h-4 bg-sageDark rounded-full"></div>
+           <div className="w-1 h-4 bg-maroon rounded-full"></div>
            <h3 className="text-[13px] font-black text-textMain uppercase tracking-wider">
               {t('cat.title')}
            </h3>
@@ -41,10 +41,10 @@ function FilterSideBlock({
              <button
                key={cat}
                onClick={() => setActiveCategory(cat)}
-               className={`w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold transition-all flex items-center justify-between group ${activeCategory === cat ? 'bg-sageDark text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50 hover:text-sageDark'}`}
+               className={`w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold transition-all flex items-center justify-between group ${activeCategory === cat ? 'bg-maroon text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50 hover:text-maroon'}`}
              >
               <span>{cat === 'All' ? t('cat.view_all') : t('cat.' + cat)}</span>
-              <div className={`w-1.5 h-1.5 rounded-full transition-all ${activeCategory === cat ? 'bg-white' : 'bg-transparent group-hover:bg-sage/40'}`}></div>
+              <div className={`w-1.5 h-1.5 rounded-full transition-all ${activeCategory === cat ? 'bg-white' : 'bg-transparent group-hover:bg-maroon/40'}`}></div>
             </button>
           ))}
         </div>
@@ -52,21 +52,21 @@ function FilterSideBlock({
 
       <div>
         <div className="flex items-center gap-2 mb-4">
-           <div className="w-1 h-4 bg-sageDark rounded-full"></div>
+           <div className="w-1 h-4 bg-maroon rounded-full"></div>
            <h3 className="text-[13px] font-black text-textMain uppercase tracking-wider">
               {t('remedy.title')}
            </h3>
         </div>
         <div className="flex flex-col gap-1.5">
           {healthConcerns.map(rem => (
-            <label key={rem} className={`flex items-center gap-3 p-2 rounded-xl cursor-pointer transition-colors border ${activeRem.includes(rem) ? 'bg-sage/10 border-sage/20' : 'border-transparent hover:bg-gray-50'}`}>
+            <label key={rem} className={`flex items-center gap-3 p-2 rounded-xl cursor-pointer transition-colors border ${activeRem.includes(rem) ? 'bg-maroon/10 border-maroon/20' : 'border-transparent hover:bg-gray-50'}`}>
               <input
                 type="checkbox"
                 checked={activeRem.includes(rem)}
                 onChange={() => toggle(activeRem, setActiveRem, rem)}
-                className="w-4 h-4 rounded border-gray-300 text-sageDark focus:ring-sage"
+                className="w-4 h-4 rounded border-gray-300 text-maroon focus:ring-maroon"
               />
-              <span className={`text-[13px] font-bold transition-colors ${activeRem.includes(rem) ? 'text-sageDark' : 'text-gray-500'}`}>
+              <span className={`text-[13px] font-bold transition-colors ${activeRem.includes(rem) ? 'text-maroon' : 'text-gray-500'}`}>
                 {t('remedy.' + rem)}
               </span>
             </label>
@@ -215,7 +215,7 @@ export default function Products() {
                <input
                  value={search}
                  onChange={e => setSearch(e.target.value)}
-                 className="w-full h-10 sm:h-12 pl-12 pr-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-sage focus:border-transparent outline-none shadow-sm transition-all"
+                 className="w-full h-10 sm:h-12 pl-12 pr-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-maroon focus:border-transparent outline-none shadow-sm transition-all"
                  placeholder={t('nav.search_placeholder')}
                />
             </div>
@@ -259,7 +259,7 @@ export default function Products() {
           <div className="flex items-center justify-between mb-6">
              <div className="flex items-center gap-2 text-sm font-bold text-gray-500">
                 {loading ? (
-                  <div className="flex items-center gap-2"><div className="w-4 h-4 border-2 border-sage border-t-transparent animate-spin rounded-full"></div> Loading...</div>
+                  <div className="flex items-center gap-2"><div className="w-4 h-4 border-2 border-maroon border-t-transparent animate-spin rounded-full"></div> Loading...</div>
                 ) : (
                   <>Showing <span className="text-gray-900">{filtered.length}</span> results</>
                 )}

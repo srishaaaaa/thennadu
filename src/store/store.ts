@@ -340,7 +340,7 @@ export const useAuthStore = create<AuthState>()(
         }
       }
     }),
-    { name: 'purple-boutique-auth' }
+    { name: 'thenn-nadu-auth' }
   )
 )
 
@@ -464,7 +464,7 @@ export const useCartStore = create<CartState>()(
       count: () => get().totalItems(),
       total: () => get().cartSubtotal(),
     }),
-    { name: 'purple-boutique-cart' }
+    { name: 'thenn-nadu-cart' }
   )
 )
 
@@ -483,7 +483,7 @@ export const useFavStore = create<FavState>()(
       isFav: (productId) => get().items.some((p) => p.id === productId),
       clear: () => set({ items: [] }),
     }),
-    { name: 'purple-boutique-favorites' },
+    { name: 'thenn-nadu-favorites' },
   ),
 )
 
@@ -612,7 +612,7 @@ export const useAdminAuthStore = create<AdminAuthState>()(
       logout: () => set({ isLoggedIn: false, role: null }),
     }),
     {
-      name: 'purple-boutique-admin-session',
+      name: 'thenn-nadu-admin-session',
       // Using sessionStorage so the session is cleared when the tab is closed
       storage: {
         getItem: (name) => {

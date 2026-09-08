@@ -28,7 +28,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
           <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', stiffness: 290, damping: 28 }} className="fixed right-0 top-0 h-full w-full max-w-sm bg-white z-50 flex flex-col shadow-2xl">
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <div className="flex items-center gap-2">
-                <ShoppingBag className="text-sageDark" size={20} />
+                <ShoppingBag className="text-maroon" size={20} />
                 <h2 className="font-bold text-lg text-textMain font-headline">{t('drawer.cart')} <span className="text-sm font-normal text-gray-400">({count()} {t('drawer.items')})</span></h2>
               </div>
               <div className="flex items-center gap-3">
@@ -42,21 +42,21 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                 <div className="flex flex-col items-center justify-center h-full gap-4 text-center py-16">
                   <div className="text-6xl">🛒</div>
                   <p className="text-textMuted font-medium">{t('drawer.empty_cart')}</p>
-                  <Link to="/products" onClick={onClose} className="text-sageDark font-bold text-sm hover:underline">{t('drawer.browse')}</Link>
+                  <Link to="/products" onClick={onClose} className="text-maroon font-bold text-sm hover:underline">{t('drawer.browse')}</Link>
                 </div>
               ) : (
                 <AnimatePresence>
                   {items.map(item => (
-                    <motion.div key={item.id} layout initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="flex gap-3 p-3 bg-bgMain rounded-xl border border-sand/40">
+                    <motion.div key={item.id} layout initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="flex gap-3 p-3 bg-bgMain rounded-xl border border-borderLight/40">
                       <img src={item.image} alt={item.name} onError={(e) => { (e.target as HTMLImageElement).src = PRODUCT_PLACEHOLDER }} className="w-16 h-16 object-cover rounded-lg shrink-0 bg-gray-100" loading="lazy" />
                       <div className="flex-grow min-w-0">
                         <h4 className="font-bold text-sm text-textMain truncate">
                           {lang === 'ta' && item.nameTa ? item.nameTa : item.name}
                         </h4>
                         <p className="text-xs text-gray-400 mb-2">{t('cat.' + item.category)}</p>
-                        <p className="text-[11px] text-sageDark font-bold mb-2">{item.unitLabel} • {formatCurrency(item.basePrice)}</p>
+                        <p className="text-[11px] text-maroon font-bold mb-2">{item.unitLabel} • {formatCurrency(item.basePrice)}</p>
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-0.5 border border-sand rounded-lg bg-white overflow-hidden">
+                          <div className="flex items-center gap-0.5 border border-borderLight rounded-lg bg-white overflow-hidden">
                             <button onClick={() => updateQty(item.id, item.qty - getStep(item))} className="w-7 h-7 flex items-center justify-center hover:bg-gray-50 text-gray-500"><Minus size={11} /></button>
                             <span className="min-w-12 px-1 text-center text-xs font-bold text-textMain">{item.variantId ? String(item.qty) : formatQuantityDisplay(item.qty, item.selectedUnit, item.unitType)}</span>
                             <button onClick={() => updateQty(item.id, item.qty + getStep(item))} className="w-7 h-7 flex items-center justify-center hover:bg-gray-50 text-gray-500"><Plus size={11} /></button>
@@ -76,7 +76,7 @@ export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => vo
                 <div className="flex justify-between font-bold text-textMain text-base">
                   <span>Order Total</span><span>{formatCurrency(orderTotal)}</span>
                 </div>
-                <Link to="/cart" onClick={onClose} className="flex items-center justify-center w-full bg-sageDark hover:bg-sageDeep text-white font-bold py-3 rounded-xl transition-colors">
+                <Link to="/cart" onClick={onClose} className="flex items-center justify-center w-full bg-maroon hover:bg-maroon-dark text-white font-bold py-3 rounded-xl transition-colors">
                   {t('drawer.view_cart')}
                 </Link>
               </div>
@@ -121,10 +121,10 @@ export function FavoritesDrawer({ open, onClose }: { open: boolean; onClose: () 
                         <h4 className="font-bold text-sm text-textMain truncate">
                           {lang === 'ta' && item.nameTa ? item.nameTa : item.name}
                         </h4>
-                        <p className="text-xs text-sageDark font-bold">{t('cat.' + item.category)}</p>
+                        <p className="text-xs text-maroon font-bold">{t('cat.' + item.category)}</p>
                         <div className="flex items-center justify-between mt-2">
                           <span className="font-bold text-textMain">{item.unitLabel} • {formatCurrency(item.offerPrice || item.price)}</span>
-                          <button onClick={() => { add(item); onClose() }} className="flex items-center gap-1 bg-sageDark hover:bg-sageDeep text-white text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">
+                          <button onClick={() => { add(item); onClose() }} className="flex items-center gap-1 bg-maroon hover:bg-maroon-dark text-white text-xs font-bold px-2.5 py-1.5 rounded-lg transition-colors">
                             <ShoppingBag size={11} /> {t('drawer.add')}
                           </button>
                         </div>

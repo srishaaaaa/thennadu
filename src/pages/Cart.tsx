@@ -19,9 +19,9 @@ export default function Cart() {
 
   return (
     <div className="mobile-page-shell pb-28 sm:pb-8">
-      <div className="bg-gradient-to-r from-[#eaf2e5] to-bgMain border-b border-sand/50 py-4 sm:py-8">
+      <div className="bg-gradient-to-r from-[#eaf2e5] to-bgMain border-b border-borderLight/50 py-4 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 flex items-center gap-3 sm:gap-4">
-          <ShoppingBag className="text-sageDark shrink-0" size={24} />
+          <ShoppingBag className="text-maroon shrink-0" size={24} />
           <div>
             <h1 className="text-xl sm:text-3xl font-bold font-headline text-textMain">{t('cart.title')}</h1>
             <p className="text-textMuted text-xs sm:text-sm">{count()} {t('cart.items_in_cart')}</p>
@@ -37,21 +37,21 @@ export default function Cart() {
               <p className="text-6xl mb-4">🛒</p>
               <h3 className="text-xl font-bold text-textMain mb-2 font-headline">{t('cart.empty')}</h3>
               <p className="text-textMuted text-sm mb-6">{t('cart.empty_sub')}</p>
-              <Link to="/products" className="inline-flex items-center gap-2 bg-sageDark hover:bg-sageDeep text-white font-bold px-6 py-3 rounded-xl transition-colors">
+              <Link to="/products" className="inline-flex items-center gap-2 bg-maroon hover:bg-maroon-dark text-white font-bold px-6 py-3 rounded-xl transition-colors">
                 {t('cart.browse')}
               </Link>
             </div>
           ) : (
             <div className="surface-panel overflow-hidden">
-              <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-sand/40">
+              <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-borderLight/40">
                 <h2 className="font-bold text-textMain font-headline">{t('cart.order_items')} ({items.length})</h2>
                 <button onClick={clear} className="text-sm text-red-400 hover:text-red-600 font-medium">{t('cart.clear_all')}</button>
               </div>
-              <div className="divide-y divide-sand/30">
+              <div className="divide-y divide-borderLight/30">
                 {items.map(item => (
                   <motion.div key={item.id} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 sm:py-5">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-gray-50 border border-sand/40">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-gray-50 border border-borderLight/40">
                       <img
                         src={getProductImage(item.name, item.category, item.imageUrl, 'tile')}
                         alt={item.name}
@@ -62,11 +62,11 @@ export default function Cart() {
                       <h3 className="font-bold text-sm sm:text-base text-textMain">
                         {lang === 'ta' && item.nameTa ? item.nameTa : item.name}
                       </h3>
-                      <p className="text-xs text-sageDark font-bold">{t('cat.' + item.category)}</p>
+                      <p className="text-xs text-maroon font-bold">{t('cat.' + item.category)}</p>
                       <p className="text-[11px] text-gray-400">{item.unitLabel} • {formatCurrency(item.basePrice)}</p>
                     </div>
                     <div className="flex items-center gap-3 sm:gap-4 flex-wrap w-full sm:w-auto">
-                      <div className="flex items-center gap-0 border-2 border-sand rounded-lg overflow-hidden bg-white">
+                      <div className="flex items-center gap-0 border-2 border-borderLight rounded-lg overflow-hidden bg-white">
                         <button onClick={() => updateQty(item.id, item.qty - getStep(item))} className="touch-target w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-textMuted hover:bg-bgMain hover:text-textMain transition-colors"><Minus size={14} /></button>
                         <span className="min-w-12 sm:min-w-14 px-1 sm:px-2 text-center font-bold text-sm text-textMain">{item.variantId ? String(item.qty) : formatQuantityDisplay(item.qty, item.selectedUnit, item.unitType)}</span>
                         <button onClick={() => updateQty(item.id, item.qty + getStep(item))} className="touch-target w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-textMuted hover:bg-bgMain hover:text-textMain transition-colors"><Plus size={14} /></button>
@@ -79,7 +79,7 @@ export default function Cart() {
               </div>
             </div>
           )}
-          <Link to="/products" className="inline-flex items-center gap-2 text-sageDark font-bold text-sm mt-5 hover:gap-3 transition-all group">
+          <Link to="/products" className="inline-flex items-center gap-2 text-maroon font-bold text-sm mt-5 hover:gap-3 transition-all group">
             <ArrowLeft size={15} className="group-hover:-translate-x-1 transition-transform" /> {t('cart.continue')}
           </Link>
 
@@ -91,7 +91,7 @@ export default function Cart() {
               </div>
               <Link to="/checkout"
                 className={`flex-1 flex items-center justify-center gap-2 font-bold py-3 rounded-2xl transition-colors text-sm ${
-                  items.length ? 'bg-sageDark hover:bg-sageDeep text-white cursor-pointer' : 'bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none'
+                  items.length ? 'bg-maroon hover:bg-maroon-dark text-white cursor-pointer' : 'bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none'
                 }`}>
                 Proceed to Checkout
               </Link>
@@ -102,7 +102,7 @@ export default function Cart() {
         {/* Bill summary */}
         <div className="w-full lg:w-[38%]">
           <div className="surface-panel p-5 sm:p-6 sticky top-24 sm:top-[110px]">
-            <h2 className="font-bold text-xl font-headline text-textMain mb-5 pb-4 border-b border-sand/40">{t('cart.bill_summary')}</h2>
+            <h2 className="font-bold text-xl font-headline text-textMain mb-5 pb-4 border-b border-borderLight/40">{t('cart.bill_summary')}</h2>
 
             {/* Item list */}
             {items.length === 0 ? (
@@ -125,7 +125,7 @@ export default function Cart() {
             )}
 
             {/* Totals */}
-            <div className="border-t border-sand pt-4 space-y-2 text-sm mb-5">
+            <div className="border-t border-borderLight pt-4 space-y-2 text-sm mb-5">
               <div className="flex justify-between font-bold text-textMain text-base">
                 <span>Cart Total</span>
                 <span>{formatCurrency(orderTotal)}</span>
@@ -138,7 +138,7 @@ export default function Cart() {
             <div className="hidden lg:flex flex-col gap-3">
               <Link to="/checkout"
                 className={`flex items-center justify-center gap-2 font-bold py-3.5 rounded-xl transition-colors text-sm ${
-                  items.length ? 'bg-sageDark hover:bg-sageDeep text-white cursor-pointer' : 'bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none'
+                  items.length ? 'bg-maroon hover:bg-maroon-dark text-white cursor-pointer' : 'bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none'
                 }`}>
                 Proceed to Checkout
               </Link>

@@ -66,24 +66,24 @@ export default function Footer() {
   }, [products])
 
   return (
-    <footer className="bg-forestDark text-gray-300 mt-12 sm:mt-16">
+    <footer className="bg-maroon-dark text-gray-300 mt-12 sm:mt-16">
       <div className="max-w-7xl mx-auto px-4 py-10 sm:py-14 grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-10">
         <div className="md:col-span-1">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-9 h-9 bg-sageDark rounded-xl flex items-center justify-center"><Leaf size={18} className="text-white" /></div>
+            <div className="w-9 h-9 bg-maroon rounded-xl flex items-center justify-center"><Leaf size={18} className="text-white" /></div>
             <div>
               <p className="font-bold text-white text-base sm:text-lg font-headline leading-tight">{BRAND_EN}</p>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-sage font-bold">{BRAND_SUBTITLE}</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-maroon font-bold">{BRAND_SUBTITLE}</p>
             </div>
           </div>
           <p className="text-sm text-gray-400 leading-relaxed mb-4">{t('footer.desc')}</p>
-          <p className="text-xs text-sage font-bold uppercase tracking-wider">{t('footer.tags')}</p>
+          <p className="text-xs text-maroon font-bold uppercase tracking-wider">{t('footer.tags')}</p>
         </div>
         <div>
           <h5 className="text-white font-bold mb-4 sm:mb-5 uppercase text-xs tracking-widest">{t('footer.shop')}</h5>
           <ul className="flex flex-col gap-2.5 text-sm">
             {categories.map(c => (
-              <li key={c}><Link to={`/products?cat=${encodeURIComponent(c)}`} className="hover:text-sage transition-colors">{t('cat.' + c)}</Link></li>
+              <li key={c}><Link to={`/products?cat=${encodeURIComponent(c)}`} className="hover:text-maroon transition-colors">{t('cat.' + c)}</Link></li>
             ))}
           </ul>
         </div>
@@ -91,7 +91,7 @@ export default function Footer() {
           <h5 className="text-white font-bold mb-4 sm:mb-5 uppercase text-xs tracking-widest">{t('footer.remedies')}</h5>
           <ul className="flex flex-col gap-2.5 text-sm">
             {remedies.map(r => (
-              <li key={r}><Link to={`/products?remedy=${encodeURIComponent(r)}`} className="hover:text-sage transition-colors">{t('remedy.' + r)}</Link></li>
+              <li key={r}><Link to={`/products?remedy=${encodeURIComponent(r)}`} className="hover:text-maroon transition-colors">{t('remedy.' + r)}</Link></li>
             ))}
           </ul>
         </div>
@@ -99,7 +99,7 @@ export default function Footer() {
           <h5 className="text-white font-bold mb-4 sm:mb-5 uppercase text-xs tracking-widest">{t('footer.contact')}</h5>
           <ul className="flex flex-col gap-4 text-sm">
             <li className="flex items-start gap-3">
-              <MapPin size={15} className="text-sage mt-0.5 shrink-0" />
+              <MapPin size={15} className="text-maroon mt-0.5 shrink-0" />
               <div className="flex flex-col gap-1">
                 <a href={BRAND_LOCATION_LINK} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Google Maps</a>
                 <span className="text-[11px] leading-relaxed text-gray-500 max-w-[260px]">{BRAND_ADDRESS}</span>
@@ -107,7 +107,7 @@ export default function Footer() {
             </li>
             {contactNumbers.map((contact) => (
               <li key={contact.label} className="flex items-start gap-3">
-                <Phone size={15} className="text-sage mt-0.5 shrink-0" />
+                <Phone size={15} className="text-maroon mt-0.5 shrink-0" />
                 <div className="flex flex-col gap-0.5">
                   <span className="text-[11px] uppercase tracking-[0.18em] text-gray-500">{contact.label}</span>
                   <a href={contact.href} className="hover:text-white transition-colors">{contact.display}</a>
@@ -115,7 +115,7 @@ export default function Footer() {
               </li>
             ))}
             <li className="flex items-start gap-3 flex-wrap">
-              <Mail size={15} className="text-sage mt-0.5 shrink-0" />
+              <Mail size={15} className="text-maroon mt-0.5 shrink-0" />
               <a href={`mailto:${BRAND_EMAIL}`} className="min-w-0 break-all hover:text-white transition-colors">{BRAND_EMAIL}</a>
             </li>
           </ul>
