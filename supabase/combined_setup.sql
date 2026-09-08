@@ -1439,6 +1439,19 @@ CREATE TABLE IF NOT EXISTS public.store_reviews (
   comment     text,
   created_at  timestamptz NOT NULL DEFAULT now()
 );
+
+-- Home.tsx's review widget was built against a different column set than the
+-- one above and was never reconciled with it — its SELECT and INSERT both
+-- referenced columns that never existed (name, location, review_text,
+-- is_approved, user_id), so submitting a review always errored and the
+-- reviews list never loaded. There is no admin moderation screen anywhere in
+-- the app, so is_approved must default to true or reviews could never show.
+ALTER TABLE public.store_reviews ADD COLUMN IF NOT EXISTS name text;
+ALTER TABLE public.store_reviews ADD COLUMN IF NOT EXISTS location text;
+ALTER TABLE public.store_reviews ADD COLUMN IF NOT EXISTS review_text text;
+ALTER TABLE public.store_reviews ADD COLUMN IF NOT EXISTS is_approved boolean NOT NULL DEFAULT true;
+ALTER TABLE public.store_reviews ADD COLUMN IF NOT EXISTS user_id uuid REFERENCES auth.users(id) ON DELETE SET NULL;
+
 ALTER TABLE public.store_reviews ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Anyone can insert reviews" ON public.store_reviews;
 CREATE POLICY "Anyone can insert reviews" ON public.store_reviews FOR INSERT WITH CHECK (true);
@@ -1573,6 +1586,17 @@ ALTER TABLE public.orders ADD COLUMN IF NOT EXISTS billing_date TIMESTAMPTZ;
 
 -- Index for fast lookup by billing_date in analytics
 CREATE INDEX IF NOT EXISTS idx_orders_billing_date ON public.orders(billing_date);
+
+-- Ensure tailor_name column exists (used by Pos.tsx's post-checkout totals-fixup
+-- update call — its absence made that whole UPDATE silently fail on every
+-- checkout, since Postgres rejects the entire statement when any SET column
+-- doesn't exist, and the caller never checked the returned error).
+ALTER TABLE public.orders ADD COLUMN IF NOT EXISTS tailor_name TEXT NOT NULL DEFAULT '';
+
+-- Stores the generated invoice PDF's public URL after upload (Pos.tsx sets
+-- this post-checkout; Dashboard.tsx/Login.tsx read it back for Order History).
+-- Never actually created before, so every one of those calls has been failing.
+ALTER TABLE public.orders ADD COLUMN IF NOT EXISTS invoice_pdf_url TEXT;
 
 -- Reload PostgREST schema cache so the new column is immediately accessible
 NOTIFY pgrst, 'reload schema';
@@ -1739,6 +1763,13 @@ CREATE TABLE IF NOT EXISTS public.attendance (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     UNIQUE (staff_id, date) -- One attendance record per staff per day
 );
+
+-- Both StaffPunch.tsx (self-service kiosk) and Attendance.tsx (admin view)
+-- read/write clock_in and clock_out — neither ever used check_in_time. Without
+-- these, punchIn() fails outright (Postgres rejects the unknown column in the
+-- upsert) and the admin view silently shows blank clock times for everyone.
+ALTER TABLE public.attendance ADD COLUMN IF NOT EXISTS clock_in TIMESTAMPTZ;
+ALTER TABLE public.attendance ADD COLUMN IF NOT EXISTS clock_out TIMESTAMPTZ;
 
 -- ==========================================
 -- STORAGE & RLS POLICIES

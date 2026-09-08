@@ -17,7 +17,7 @@ import { invoicePdfFile } from '../lib/invoicePdf'
 import { uploadInvoicePdf } from '../lib/storage'
 import { createOrderWithStock } from '../services/orderService'
 import { createAdvanceOrder, type AdvanceOrder, type AdvancePaymentMethod } from '../services/advanceOrderService'
-import { advanceReceiptPdf, downloadFile, printAdvanceReceipt } from '../lib/advanceReceipt'
+import { printAdvanceReceipt } from '../lib/advanceReceipt'
 import { printThermalReceipt } from '../lib/thermalPrint'
 import {
   buildStructuredOrderItem,
@@ -553,7 +553,7 @@ export default function Pos(props: PosProps = {}) {
       const effectiveBillingDate = billingDate.trim()
         ? new Date(billingDate).toISOString()
         : new Date().toISOString()
-      await supabase.from('orders').update({
+      const { error: fixupError } = await supabase.from('orders').update({
         subtotal,
         total,
         total_gst: totalGst,
@@ -568,6 +568,7 @@ export default function Pos(props: PosProps = {}) {
         tailor_name: tailorName.trim(),
         billing_date: effectiveBillingDate,
       }).eq('id', created.orderId)
+      if (fixupError) console.error('Order total/remarks fixup failed:', fixupError)
       const createdInvoice: InvoiceSnap = {
         id: created.orderId,
         invoiceNo: created.invoiceNo,
