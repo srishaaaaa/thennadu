@@ -180,13 +180,14 @@ function InventoryAnalytics({ products, categories }: { products: InventoryProdu
   })
 
   const downloadSnapshotCSV = () => {
-    const headers = ['ID', 'Product Name', 'Category', 'Stock Quantity', 'Low Stock Alert', 'Price', 'Purchase Price', 'Status', 'Last Updated']
+    const headers = ['ID', 'Product Name', 'Category', 'Stock Quantity', 'Low Stock Alert', 'Price', 'Purchase Price', 'Status', 'Last Updated Date', 'Last Updated Time']
     const rows = products.map(p => {
       const status = p.stock_quantity <= 0 ? 'Out of Stock' : p.stock_quantity <= p.low_stock_alert ? 'Low Stock' : 'In Stock'
+      const updatedAt = new Date(p.updated_at)
       return [
         p.id, `"${p.name.replace(/"/g, '""')}"`, `"${(p.category || '').replace(/"/g, '""')}"`,
         p.stock_quantity, p.low_stock_alert, p.price, p.purchase_price || 0, status,
-        new Date(p.updated_at).toLocaleString('en-MY')
+        updatedAt.toLocaleDateString('en-MY'), updatedAt.toLocaleTimeString('en-MY')
       ].join(',')
     })
     const csvContent = [headers.join(','), ...rows].join('\n')
@@ -200,9 +201,10 @@ function InventoryAnalytics({ products, categories }: { products: InventoryProdu
   }
 
   const downloadMovementsCSV = () => {
-    const headers = ['Date & Time', 'Type', 'Product', 'Category', 'Qty Delta', 'Before', 'After', 'Notes']
+    const headers = ['Date', 'Time', 'Type', 'Product', 'Category', 'Qty Delta', 'Before', 'After', 'Notes']
     const rows = filteredLogs.map(l => [
-      new Date(l.created_at).toLocaleString('en-MY'),
+      new Date(l.created_at).toLocaleDateString('en-MY'),
+      new Date(l.created_at).toLocaleTimeString('en-MY'),
       REASON_LABEL[l.reason] || l.reason,
       `"${(l.products?.name || '').replace(/"/g, '""')}"`,
       `"${(l.products?.category || '').replace(/"/g, '""')}"`,
