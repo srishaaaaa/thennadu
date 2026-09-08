@@ -1,0 +1,19 @@
+export const BRAND_EN = "Thenn Nadu Tailoring"
+export const BRAND_TA = "Thenn Nadu Tailoring"
+export const BRAND_SUBTITLE = 'Thenn Nadu Legacy'
+export const BRAND_LOGO = '/logo.png'
+
+export const BRAND_PRIMARY_PHONE_DISPLAY = '+60 16-409 1130'
+export const BRAND_PRIMARY_PHONE_E164 = '60164091130'
+export const BRAND_SECONDARY_PHONE_DISPLAY = '+60 16-409 1130'
+export const BRAND_SECONDARY_PHONE_E164 = '60164091130'
+export const BRAND_THIRD_PHONE_DISPLAY = BRAND_PRIMARY_PHONE_DISPLAY
+export const BRAND_THIRD_PHONE_E164 = BRAND_PRIMARY_PHONE_E164
+export const BRAND_PHONE_DISPLAY = BRAND_PRIMARY_PHONE_DISPLAY
+export const BRAND_PHONE_E164 = BRAND_PRIMARY_PHONE_E164
+export const BRAND_WHATSAPP = BRAND_THIRD_PHONE_DISPLAY
+export const WHATSAPP_NUM = BRAND_THIRD_PHONE_E164
+export const BRAND_WHATSAPP_LINK = `https://wa.me/${BRAND_THIRD_PHONE_E164}`
+export const BRAND_EMAIL = 'thennnadulegacy@gmail.com'
+export const BRAND_ADDRESS = 'No. 4A 1st Floor & 15, Market Street, 10200 Georgetown, Penang'
+export const BRAND_LOCATION_LINK = '#'
